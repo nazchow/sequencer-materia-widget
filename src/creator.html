@@ -7,7 +7,7 @@
 
 		<!-- STYLESHEETS -->
 		<link rel="stylesheet" type="text/css" href="creator.css">
-		<link href="//fonts.googleapis.com/css?family=Lato:300,400,100,700" rel="stylesheet" type="text/css">
+		<link href="//fonts.googleapis.com/css?family=Balsamiq+Sans:400,700" rel="stylesheet" type="text/css">
 
 		<!-- REQUIRED MATERIA JAVASCRIPT -->
 		<script src="materia.creatorcore.js"></script>
@@ -17,6 +17,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 
 		<!-- MAIN CREATOR SCRIPT -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 		<script src="creator.js"></script>
 	</head>
 
@@ -28,7 +29,7 @@
 			</label>
 			<input type="text" id="title" placeholder="My Sequencer Widget"/>
 			<div id="options">
-				<h5>Options</h5>
+				<h5> Mode Options</h5>
 				<div id="assessmentDetails" class="show">
 					<h6 id="mode">Assessment Mode</h6>
 					<div class="optionsDot"></div>
@@ -47,23 +48,19 @@
 					<h1 class="tileColumnTitle">Optional Information</h1>
 				</section>
 				<div id="addSliderButton">
-					<div class="icon-plus"></div>
-					Add Step
+					<div class="icon-plus main"></div>
+					Add Tile
 				</div>
-				<div class="arrow" id="first_step"><p>Click here to add the first step</p></div>
+				<div class="arrow" id="first_step"><p>Click here to add a tile</p></div>
 				<div class="smallarrow" id="second_step"><p>Type a tile title</p></div>
 				<div style="clear:both"></div>
 			</div>
 		</div>
 
 		<!--Tile Slider Template -->
-		<script type="text/template" id="t-slide-info"><div class="tileInfoSlider" data-id="<%= id %>">
+		<script type="text/template" id="t-slide-info"><div class="tileInfoSlider" data-id="<%= id %>" tabindex="0">
 				<div class="block">
 					<div class="number"><%= tileNum %></div>
-					<div class="addTileDot"></div>
-					<div class="addInbetween">
-						<div class="icon-plus"></div>
-					</div>
 				</div>
 				<div class="tile">
 					<textarea class="tile-text title nondraggable" type="text"><%= tileText %></textarea>
@@ -71,8 +68,11 @@
 				<div class="optionalInfo">
 					<textarea type="text" class="cluetext" placeholder="Enter optional information"><%= clueText %></textarea>
 				</div>
-				<div class="peak"></div>
-				<div class="icon-close"></div>
+				<div class="tileActions">
+					<div class="addTileDot"><div class="icon-plus"></div></div>
+					<div class="tile-line"></div>
+					<button class="delete tile-action-delete" title="Delete tile" tabindex="0"></button>
+				</div>
 			</div>
 		</script>
 
@@ -113,13 +113,13 @@
 			<aside class="textLeft">
 				<h1>Sequencer</h1>
 				<p>Create a sequence that students will put in order.</p>
-				<p>In practice mode students have unlimited tries to get the correct sequence.</p>
-				<p>In assessment mode you can define scoring options to determine their score.</p>
+				<p>In <b>practice mode</b> students have unlimited tries to get the correct sequence.</p>
+				<p>In <b>assessment mode</b> you can define scoring options to determine their score.</p>
 			</aside>
 			<aside class="photoRight">
 				<img src="assets/SequencerScreenShot.png"/>
 			</aside>
-			<h4 id="lowerLine">Start by giving your Sequencer widget a title</h4>
+			<h4 id="lowerLine">Start by giving your Sequencer widget a title:</h4>
 			<input id="inputTitle" type="text" placeholder="My Sequencer Widget"/>
 			<div class="closeWindow rightButton">Get Started</div>
 		</div>

@@ -62,8 +62,11 @@ html, body {
 	overflow-y: hidden;
 	z-index: 2;
 	cursor: default;
-	background: url("assets/RepeatedBG.png") 0 0;
-	background-repeat: both;
+	background-color: #FCF5E3;
+	background-image:
+		linear-gradient(to right, #F5E8D8 2px, transparent 2px),
+		linear-gradient(to bottom, #F5E8D8 2px, transparent 2px);
+	background-size: 40px 40px;
 	padding: 0;
 	margin: 0;
 	font-family: 'AmericanTypewriter', sans-serif;

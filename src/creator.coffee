@@ -82,29 +82,22 @@ Namespace('Sequencer').Creator = do ->
 			_addNewTileSlider()
 
 		# Add a slider between two tiles
-		$('body').delegate '.addInbetween, .addTileDot', 'click', ->
+		$('body').delegate '.addTileDot', 'click', ->
 				_addNewTileSlider($(this).parent().parent())
 				_updateTileNums()
-				$(this).removeClass 'show'
-				$(this).parent().parent().children('.peak').removeClass 'show'
+				$(this).parent().parent().children('.tile-line').css({
+					'opacity': '0',
+					'width': '5px'
+				})
 
 		# Remove Slider
-		$('body').delegate '.icon-close', 'click', ->
+		$('body').on 'click', '.tile-action-delete', (e) ->
+			e.preventDefault()
+			e.stopPropagation()
+			tile = $(e.target).closest('.tileInfoSlider')
 			_numTiles--
-			$(this).parent().removeClass 'appear'
-			Elem = this
-			setTimeout ->
-				$(Elem).parent().remove()
-				_updateTileNums()
-			, 200
-
-		$('body').delegate '.addInbetween', 'mouseover', ->
-				$(this).addClass 'show'
-				$(this).parent().parent().children('.peak').addClass 'show'
-
-		$('body').delegate '.addInbetween', 'mouseout', ->
-				$(this).removeClass 'show'
-				$(this).parent().parent().children('.peak').removeClass 'show'
+			tile.remove()
+			_updateTileNums()
 
 		$('#options').on 'click', ->
 			$('#optionsPopup').addClass 'show'
@@ -204,8 +197,8 @@ Namespace('Sequencer').Creator = do ->
 	# Change the number on the sliders
 	_updateTileNums = () ->
 		i = 1
-		for slider in $('.tileInfoSlider')
-			$(slider).children('.block').children('.number').html(i)
+		$('.tileInfoSlider').each ->
+			$(this).find('.block .number').html(i)
 			i++
 
 	# On preview/publish/save click

@@ -33,14 +33,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-close:before {
-	content: "\e600";
-}
-.icon-plus:before {
-	content: "\e601";
-	margin-right: 10px;
-}
-
 //Offical Sequencer colors
 $dgrey: #232629;
 $light: #f9f9f9;
@@ -49,7 +41,10 @@ $medgrey: #727272;
 $medblue: #AEBCD3;
 $blue: #507CBE;
 $dblue: #6A7A92;
-$titleblue: #4F7CBE;
+$titleblue: #004C92;
+$buttonblue: #004E95;
+$textblue: #0A3077;
+$textbeige: #FCF5E3;
 $lblue: #DCE2EB;
 $red: #F04931;
 $lgreen: #EAF5E7;
@@ -62,8 +57,10 @@ $lpurple: #CC9BD4;
 $lblurple: #DCE2EB;
 $dblurple: #6A7A92;
 $hblurple: #73839B;
+$linecol: #D8604B;
+$salmon: #E8A381;
 
-
+// CHANGE 
 @font-face {
 	font-family: 'AmericanTypewriter';
 	src: url('AmericanTypewriter.eot'); /* IE */
@@ -85,6 +82,16 @@ $hblurple: #73839B;
 	font-weight: normal;
 }
 
+.icon-close:before {
+	content: "\e600";
+}
+.icon-plus:before {
+	content: "\e601";
+	&.main {
+		margin-right: 10px;
+	}
+}
+
 html {
 	height: 100%;
 	min-height: 500px;
@@ -93,16 +100,17 @@ html {
 
 body {
 	height: 100%;
-	background-color: #3D3D3F;
-	background-image: -webkit-linear-gradient(top, #1B1B1B, #3D3D3F, #1B1B1B);
-	background-image: -moz-linear-gradient(top, #1B1B1B, #3D3D3F, #1B1B1B);
-	background-image: -ms-linear-gradient(top, #1B1B1B, #3D3D3F, #1B1B1B);
-	background-image: -o-linear-gradient(top, #1B1B1B, #3D3D3F, #1B1B1B);
+	background-color: $textbeige;
+	background-image:
+		linear-gradient(to right, #F5E8D8 2px, transparent 2px),
+		linear-gradient(to bottom, #F5E8D8 2px, transparent 2px);
+	background-size: 40px 40px;
 	color: #fff;
-	font-family: "Lato","Arial",sans-serif;
+	font-family: "Balsamiq Sans", sans-serif;
 	font-weight: 400;
 	margin: 0px;
 }
+
 
 label {
 	float: left;
@@ -135,10 +143,10 @@ header {
 		text-align: left;
 		font-size: 20px;
 		width: 50%;
-		font-family: "Lato","Arial",sans-serif;
+		font-family: "Balsamiq Sans", sans-serif;
 		color: $light;
 		font-size: 25px;
-		font-weight: 300;
+		font-weight: 700;
 	}
 
 	#verticalBar {
@@ -156,7 +164,7 @@ header {
 		min-width: 220px;
 		padding: 5px 10px 0px;
 		font-size: 20px;
-		font-family: "Lato","Arial",sans-serif;
+		font-family: "Balsamiq Sans", sans-serif;
 		color: $light;
 		font-size: 25px;
 		font-weight: normal;
@@ -254,60 +262,80 @@ header {
 	position: absolute;
 	top: 70px;
 	width: 100%;
-	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 
 	#tileSection {
 		position: relative;
-		margin-left: 10%;
-		margin-right: 10%;
-		min-height: 500px;
+		height: 100%;
 		top: -8px;
-		padding: 15px 15px 30px 15px;
-		background: $lblue;
-		&:before {
-		    content: "";
-		    position: absolute;
-		    left: -50px;
-		    top: 0;
-		    width: 50px;
-		    height: 100%;
-		    background-color: $blurple;
-		}
+		padding: 25px 15px 40px 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		max-width: 1200px;
+
 		#columnSection {
 			opacity: 1;
 	    	transition: 200ms ease;
 			&.hidden {
 				opacity: 0;
 			}
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+			margin-bottom: 20px;
+			width: 800px;
+			gap: 120px;
+
 			.tileColumnTitle {
-				clear: both;
+				width: 380px;
+				text-align: center;
+				font-size: 32px;
+				font-weight: 700;
+				color: $textblue;
+				margin: 0;
 				position: relative;
-				color: $blue;
-				display: inline;
-				font-weight: 300;
-				font-size: 30px;
-				margin-right: 162px;
+				left: 0;
 			}
 		}
 
-
 		#addSliderButton {
-			clear: both;
 			position: relative;
-			float: left;
 			height: 40px;
 			width: 164px;
-			margin: 0px 5px 5px 5px;
+			margin: 0 auto;
 			padding-top: 20px;
 			text-align: center;
-			background: $dgreen;
-			border-radius: 3px;
-	       	transition: 200ms ease;
+			background: $buttonblue url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+			background-blend-mode: overlay;
+			transform: translateY(-2px) rotate(-0.5deg);
+			box-shadow: 
+				inset 0 1px 5px rgba(198, 130, 57, 0.358),
+				inset 0 -1px 5px rgba(2, 41, 109, 0.1),
+				8px 4px 6px rgba(151,90,52,0.25);
+			border-radius: 10px;
+			transition: 200ms ease;
 			cursor: pointer;
 			&:hover {
-		    	box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,.1);
-				background: #78DD5E;
-				color: #000;
+				transform: translateY(-1px) rotate(0deg);
+				box-shadow: 
+					inset 0 1px 1px rgba(255,255,255,0.2),
+					inset 0 -1px 1px rgba(0,0,0,0.1),
+					10px 5px 3px rgba(151,90,52,0.32),
+					inset 0 0 0 2px rgba(0,0,0,0.1);
+				background:  #00366A;
+			}
+			&:active {
+				transform: translateY(1px) rotate(0deg);
+				box-shadow: 
+					inset 0 1px 1px rgba(255,255,255,0.2),
+					inset 0 -1px 1px rgba(0,0,0,0.1),
+					5px 2px 1px rgba(151,90,52,0.18),
+					inset 0 0 0 2px rgba(0,0,0,0.1);
 			}
 			&.icon-plus {
 				position: absolute;
@@ -322,14 +350,16 @@ header {
 			position: absolute;
 			width: 150px;
 			height: 70px;
-			top: 45px;
-			left: 190px;
-			text-align: right;
+			top: 60px;
+			left: 290px;
+			text-align: center;
 			padding-right: 15px;
-			margin-left: 80px;
-			background: $purple;
+			margin-left: 500px;
+			background: $salmon;
 	        transition: 200ms ease;
 			display: none;
+			color: $textblue;
+			box-shadow: 0 8px 4px rgba(134, 58, 7, 0.361);
 			&:before {
 				content: "";
 				position: absolute;
@@ -339,7 +369,7 @@ header {
 				top: -23px;
 				border-top: 60px solid transparent;
 				border-bottom: 60px solid transparent;
-				border-right: 60px solid $purple;
+				border-right: 60px solid $salmon;
 			}
 			&.show {
 				display: block;
@@ -348,18 +378,20 @@ header {
 		}
 
 		.smallarrow {
-			position: absolute;
+			position: relative;
 			width: 150px;
 			height: 50px;
-			background: #B944CC;
-			border: 2px solid #B944CC;
+			background: $salmon;
+			border: 2px solid $salmon;
 			padding: 0px 5px;
 			text-align: center;
 			border-radius: 5px;
-			left: 20px;
-			top: 140px;
+			margin-right: 420px;
+			margin-top: 20px;
 			animation: upbump 1s infinite;
 			display: none;
+			box-shadow: 0 5px 5px rgba(187, 78, 4, 0.5);
+			color: $textblue;
 			&.show {
 				display: block;
 			}
@@ -392,12 +424,18 @@ header {
 			opacity: 0;
 			clear: both;
 			position: relative;
-			height: 70px;
-			left: -65px;
-			margin: 5px 0px;
+			height: 180px;
+			width: 1020px;
+			margin: 40px auto;
 			transform: translateY(10px);
 			transition: 300ms 50ms;
-			&.appear{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 40px;
+			overflow: visible;
+
+			&.appear {
 				opacity: 1;
 				transform: translateY(0px);
 			}
@@ -409,135 +447,114 @@ header {
 
 			.block {
 				position: relative;
-				float: left;
-				height: 61px;
-				width: 60px;
-				margin-bottom: 14px;
+				height: 140px;
+				width: 150px;
+				margin-bottom: 0;
+				margin-left: -20px;
 
 				.number {
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					position: absolute;
-					top: 10px;
 					color: $light;
 					text-align: center;
 					background: $titleblue;
-					padding-top: 3px;
-					height: 32px;
-					width: 35px;
-					margin-left: 8px;
-					margin-bottom: 35px;
-					font-size: 25px;
-					font-family: sans-serif;
+					padding: 0;
+					height: 70px;
+					width: 70px;
+					margin-left: 40px;
+					margin-top: 35px;
+					font-size: 38px;
+					font-family: "Balsamiq Sans", sans-serif;
 					border-radius: 50%;
-				}
-
-				.addTileDot {
-					position: absolute;
-					left: 24px;
-					top: -10px;
-					width: 5px;
-					height: 5px;
-					background: $medgrey;
-					border-radius: 50%;
-				}
-				.addInbetween {
-					opacity: 0;
-					position: absolute;
-					left: 8px;
-					top: -22px;
-					height: 28px;
-					width: 28px;
-					background: $dgreen;
-					box-shadow: inset 0 0 0 3px $light;
-					border-radius: 15px 0px 15px 15px;
-			       	transform: rotate(45deg);
-			       	transition: 200ms 50ms;
-					cursor: pointer;
-
-			       	.icon-plus {
-			       		top: 3px;
-			       		left: 6px;
-			       		color: $light;
-			       		font-size: 14px;
-						position: absolute;
-						transform: rotate(-45deg);
-					}
-					&:hover {
-						opacity: 1;
-						left: 12px;
-					}
 				}
 			}
 			.tile {
 				position: relative;
-				float: left;
-				height: 61px;
-				width: 164px;
-				left: 80px;
-				margin-right: 100px;
-				margin-left: -70px;
-				z-index: 10;
-				background: url("assets/sequencing_object.png") 0 0;
-				box-shadow: 0 4px 3px -3px black;
+				height: 187px;
+				width: 380px;
+				border-radius: 8px;
+				background: url("assets/tile.png") 0 0;
+				background-size: cover;
+				background-position: center;
+				box-shadow: 0 4px 3px -3px #02092a;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				.tile-text {
 					background: transparent;
 					border: none;
 					resize: none;
-					position: absolute;
-					height: 40px;
-					width: 145px;
-					margin: 10px;
-					color: $dgrey;
-					font-family: sans-serif;
+					position: relative;
+					height: 90px;
+					width: 330px;
+					padding: 15px;
+					color: $textbeige;
+					font-family: "Balsamiq Sans", sans-serif;
 					text-align: center;
 					vertical-align: middle;
-					font-size: 15px;
+					font-size: 25px;
 					transition: 100ms ease;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto;
 
 					&:focus {
-						color: black;
+						color: $textbeige;
 					}
 				}
 			}
 			.optionalInfo {
 				position: relative;
-				float: left;
-				height: 55px;
-				width: 60%;
-				margin-left: 20px;
-				padding: 5px;
-				background: $light;
-				color: $dgrey;
+				height: 187px;
+				width: 380px;
+				padding: 0;
+				background: url("assets/optional.png") 0 0;
+				background-size: cover;
+				background-position: center;
+				box-shadow: 0 4px 3px -3px #3270ab;
+				color: $textbeige;
 				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				margin-right: 0;
+				justify-content: center;
 				&:before {
 					content: "";
 					position: absolute;
 					left: -10px;
-					top: 13px;
+					top: 35px;
 					width: 0;
 					height: 0;
 					border-top: 20px solid transparent;
 					border-bottom: 20px solid transparent;
-					border-right: 20px solid $light;
 				}
 				textarea {
-					position: absolute;
-					border: none;
 					background: transparent;
-					width: 90%;
-					height: calc(90% - 10px);
+					border: none;
 					resize: none;
+					position: relative;
+					height: 90px;
+					width: 330px;
+					padding: 15px;
+					color: $textblue;
+					font-family: "Balsamiq Sans", sans-serif;
+					text-align: center;
+					vertical-align: middle;
+					font-size: 25px;
+					transition: 100ms ease;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto;
+
+					&:focus {
+						color: $textblue;
+					}
 				}
 			}
-			.remove {
-				position: relative;
-				top: 25px;
-				left: 10px;
-			}
-
 			.peak {
 				opacity: 0;
 				position: absolute;
@@ -547,29 +564,97 @@ header {
 				height: 2px;
 				width: 5px;
 				transition: all 200ms;
-				&.show {
-					left: 70px;
-					opacity: 1;
-					width: 164px;
-					height: 5px;
-				}
 			}
 
-			.icon-close {
-				float: right;
-				color: #333;
-				opacity: .8;
+			.delete {
+				position: relative;
+				width: 30px;
+				height: 30px;
+				background: $buttonblue;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				color: $textbeige;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+				transition: all 0.2s ease;
 				cursor: pointer;
-				margin-right: -20px;
-				margin-top: 22px;
-				transition: 400ms;
+				opacity: 0.8;
+				
 				&:hover {
-					color: red;
+					background: darken($buttonblue, 10%);
+					transform: scale(1.1);
+					color: $red;
+				}
 
+				&:before {
+					content: "×";
+					font-size: 24px;
+					line-height: 1;
+					color: $textbeige;
+				}
+			}
+			
+			.tileActions {
+				position: relative;
+				height: 90px;
+				width: 60px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 20px;
+			}
+
+			.addTileDot {
+				position: relative;
+				width: 30px;
+				height: 30px;
+				background: $buttonblue;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				color: $textbeige;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+				transition: all 0.2s ease;
+				cursor: pointer;
+				
+				&:hover {
+					background: darken($buttonblue, 30%);
+					transform: scale(1.1);
+					
+					& ~ .tile-line {
+						opacity: 1;
+						width: 758px;
+					}
+				}
+				
+				.icon-plus {
+					font-size: 16px;
+					color: $textbeige;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: relative;
+					width: 100%;
+					height: 100%;
 				}
 			}
 		}
 	}
+}
+.tile-line {
+    opacity: 0;
+    position: absolute;
+    left: -800px;
+    top: -50px;
+    background: $linecol;
+    height: 7px;
+    width: 5px;
+    transition: all 0.2s ease;
 }
 #optionsPopup {
 	display: none;
@@ -593,22 +678,24 @@ header {
 	margin-top: -210px;
 	padding: 15px;
 	position: fixed;
-	background: #fff;
 	border: solid 1px #777;
+	border-radius: 12px;
 	z-index: 100;
 
 	text-align: left;
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 17px;
 
 	box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-	color: #333;
+	color: $textblue;
+	background: url('assets/pop.png') no-repeat center center;
+	background-size: cover;
 
 
 	h1 {
 		font-size: 30px;
-		font-weight: 300;
-		color: #333;
+		font-weight: 700;
+		color: $textblue;
 		margin: 5px 0px;
 	}
 
@@ -623,6 +710,7 @@ header {
 			float: left;
 			height: 50px;
 			font-weight: 700;
+			color: $textblue;
 		}
 
 		#modeContainer {
@@ -640,7 +728,7 @@ header {
 				left: 120px;
 				height: 100%;
 				width: 50%;
-				background: $blue;
+				background: $buttonblue;
 				border-radius: 3px;
 				transition: 500ms ease-in-out;
 
@@ -727,8 +815,8 @@ header {
 		display: inline-block;
 		width: 22%;
 		height: 40px;
-		color: $light;
-		background: $dgreen;
+		color: $textbeige;
+		background: $buttonblue;
 		line-height: 40px;
 		text-align: center;
 		vertical-align: center;
@@ -737,8 +825,7 @@ header {
 		cursor: pointer;
 		&:hover {
 			box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,.1);
-			background: #78DD5E;
-			color: #000;
+			background: darken($buttonblue, 10%);
 		}
 	}
 	.centeredButton {
@@ -760,10 +847,13 @@ header {
 		padding: 0px 10px;
 		text-align: left;
 		font-size: 16px;
-		font-family: 'Lato';
-		font-weight: 300;
+		font-family: "Balsamiq Sans", sans-serif;
+		font-weight: 400;
 		background: transparent;
-		border: 3px solid $dgreen;
+		border: 2px solid $textblue;
+		border-radius: 6px;
+		color: $textblue;
+		transition: all 0.2s ease;
 	}
 	.textLeft {
 		float: left;

@@ -2,6 +2,8 @@
 general:
   name: Sequencer
   group: Materia
+  # height: 600
+  # width: 1457
   height: 548
   width: 750
   in_catalog: Yes
